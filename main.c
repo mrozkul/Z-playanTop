@@ -47,6 +47,7 @@ ISR(TIMER0_COMPA_vect)
 	{
 		 direction = 1;
 		 ziplama_sayisi +=1;
+		 ziplama_sayisi = (ziplama_sayisi >=7 )? 0 : ziplama_sayisi;
 	}
 	if (led_no <= ziplama_sayisi)
 	{
