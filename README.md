@@ -1,1 +1,1 @@
-# Z-playanTop
+Ziplayan top algoritması.
