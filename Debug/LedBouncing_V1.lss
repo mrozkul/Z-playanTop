@@ -1,0 +1,267 @@
+
+LedBouncing_V1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000228  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000001b4  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000008  00800100  00800100  00000228  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000228  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000258  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000030  00000000  00000000  00000298  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000a1d  00000000  00000000  000002c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000069f  00000000  00000000  00000ce5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000002bc  00000000  00000000  00001384  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000078  00000000  00000000  00001640  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000004ce  00000000  00000000  000016b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000097  00000000  00000000  00001b86  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000020  00000000  00000000  00001c1d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 48 00 	jmp	0x90	; 0x90 <__vector_14>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a8 30       	cpi	r26, 0x08	; 8
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 c0 00 	call	0x180	; 0x180 <main>
+  88:	0c 94 d8 00 	jmp	0x1b0	; 0x1b0 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <__vector_14>:
+}
+
+
+
+ISR(TIMER0_COMPA_vect)
+{
+  90:	1f 92       	push	r1
+  92:	0f 92       	push	r0
+  94:	0f b6       	in	r0, 0x3f	; 63
+  96:	0f 92       	push	r0
+  98:	11 24       	eor	r1, r1
+  9a:	2f 93       	push	r18
+  9c:	3f 93       	push	r19
+  9e:	4f 93       	push	r20
+  a0:	5f 93       	push	r21
+  a2:	6f 93       	push	r22
+  a4:	7f 93       	push	r23
+  a6:	8f 93       	push	r24
+  a8:	9f 93       	push	r25
+	milisaniye++;
+  aa:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <milisaniye>
+  ae:	90 91 02 01 	lds	r25, 0x0102	; 0x800102 <milisaniye+0x1>
+  b2:	01 96       	adiw	r24, 0x01	; 1
+  b4:	90 93 02 01 	sts	0x0102, r25	; 0x800102 <milisaniye+0x1>
+  b8:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <milisaniye>
+	if (milisaniye >= dusus)
+  bc:	20 91 04 01 	lds	r18, 0x0104	; 0x800104 <dusus>
+  c0:	30 91 05 01 	lds	r19, 0x0105	; 0x800105 <dusus+0x1>
+  c4:	82 17       	cp	r24, r18
+  c6:	93 07       	cpc	r25, r19
+  c8:	e8 f1       	brcs	.+122    	; 0x144 <__vector_14+0xb4>
+	{
+		
+		milisaniye=0;
+  ca:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <milisaniye+0x1>
+  ce:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <milisaniye>
+		GPIO._PORTD_.port = (1<<led_no);
+  d2:	80 91 06 01 	lds	r24, 0x0106	; 0x800106 <led_no>
+  d6:	90 91 07 01 	lds	r25, 0x0107	; 0x800107 <led_no+0x1>
+  da:	41 e0       	ldi	r20, 0x01	; 1
+  dc:	50 e0       	ldi	r21, 0x00	; 0
+  de:	08 2e       	mov	r0, r24
+  e0:	02 c0       	rjmp	.+4      	; 0xe6 <__vector_14+0x56>
+  e2:	44 0f       	add	r20, r20
+  e4:	55 1f       	adc	r21, r21
+  e6:	0a 94       	dec	r0
+  e8:	e2 f7       	brpl	.-8      	; 0xe2 <__vector_14+0x52>
+  ea:	4b b9       	out	0x0b, r20	; 11
+		
+	
+	if (led_no >= 7 )
+  ec:	87 30       	cpi	r24, 0x07	; 7
+  ee:	91 05       	cpc	r25, r1
+  f0:	40 f0       	brcs	.+16     	; 0x102 <__vector_14+0x72>
+	{
+		 direction = 1;
+  f2:	41 e0       	ldi	r20, 0x01	; 1
+  f4:	40 93 03 01 	sts	0x0103, r20	; 0x800103 <direction>
+		 ziplama_sayisi +=1;
+  f8:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_edata>
+  fc:	4f 5f       	subi	r20, 0xFF	; 255
+  fe:	40 93 00 01 	sts	0x0100, r20	; 0x800100 <_edata>
+	}
+	if (led_no <= ziplama_sayisi)
+ 102:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_edata>
+ 106:	50 e0       	ldi	r21, 0x00	; 0
+ 108:	48 17       	cp	r20, r24
+ 10a:	59 07       	cpc	r21, r25
+ 10c:	18 f0       	brcs	.+6      	; 0x114 <__vector_14+0x84>
+	{
+		direction = -1;
+ 10e:	4f ef       	ldi	r20, 0xFF	; 255
+ 110:	40 93 03 01 	sts	0x0103, r20	; 0x800103 <direction>
+	}
+		dusus += (5 * direction );
+ 114:	40 91 03 01 	lds	r20, 0x0103	; 0x800103 <direction>
+ 118:	04 2e       	mov	r0, r20
+ 11a:	00 0c       	add	r0, r0
+ 11c:	55 0b       	sbc	r21, r21
+ 11e:	ba 01       	movw	r22, r20
+ 120:	66 0f       	add	r22, r22
+ 122:	77 1f       	adc	r23, r23
+ 124:	66 0f       	add	r22, r22
+ 126:	77 1f       	adc	r23, r23
+ 128:	64 0f       	add	r22, r20
+ 12a:	75 1f       	adc	r23, r21
+ 12c:	26 0f       	add	r18, r22
+ 12e:	37 1f       	adc	r19, r23
+ 130:	30 93 05 01 	sts	0x0105, r19	; 0x800105 <dusus+0x1>
+ 134:	20 93 04 01 	sts	0x0104, r18	; 0x800104 <dusus>
+		led_no = led_no - direction;
+ 138:	84 1b       	sub	r24, r20
+ 13a:	95 0b       	sbc	r25, r21
+ 13c:	90 93 07 01 	sts	0x0107, r25	; 0x800107 <led_no+0x1>
+ 140:	80 93 06 01 	sts	0x0106, r24	; 0x800106 <led_no>
+	}
+
+
+	
+}
+ 144:	9f 91       	pop	r25
+ 146:	8f 91       	pop	r24
+ 148:	7f 91       	pop	r23
+ 14a:	6f 91       	pop	r22
+ 14c:	5f 91       	pop	r21
+ 14e:	4f 91       	pop	r20
+ 150:	3f 91       	pop	r19
+ 152:	2f 91       	pop	r18
+ 154:	0f 90       	pop	r0
+ 156:	0f be       	out	0x3f, r0	; 63
+ 158:	0f 90       	pop	r0
+ 15a:	1f 90       	pop	r1
+ 15c:	18 95       	reti
+
+0000015e <timer0_init>:
+
+
+
+void timer0_init()
+{
+	TIMER0_INTERRUPT_OCIE0A = 1;
+ 15e:	ee e6       	ldi	r30, 0x6E	; 110
+ 160:	f0 e0       	ldi	r31, 0x00	; 0
+ 162:	80 81       	ld	r24, Z
+ 164:	82 60       	ori	r24, 0x02	; 2
+ 166:	80 83       	st	Z, r24
+	TIMER0_MODE_SELECTION = TIMER0_CTC_mode;
+ 168:	84 b5       	in	r24, 0x24	; 36
+ 16a:	8c 7f       	andi	r24, 0xFC	; 252
+ 16c:	82 60       	ori	r24, 0x02	; 2
+ 16e:	84 bd       	out	0x24, r24	; 36
+	TIMER0_CLOCK_SELECTION = prescaler_64;
+ 170:	85 b5       	in	r24, 0x25	; 37
+ 172:	88 7f       	andi	r24, 0xF8	; 248
+ 174:	83 60       	ori	r24, 0x03	; 3
+ 176:	85 bd       	out	0x25, r24	; 37
+	sei();
+ 178:	78 94       	sei
+	OCR0A_.deger = 249;
+ 17a:	89 ef       	ldi	r24, 0xF9	; 249
+ 17c:	87 bd       	out	0x27, r24	; 39
+ 17e:	08 95       	ret
+
+00000180 <main>:
+uint16_t milisaniye , dusus , led_no ;
+int8_t direction;
+uint8_t ziplama_sayisi;
+int main(void)
+{
+	timer0_init();
+ 180:	0e 94 af 00 	call	0x15e	; 0x15e <timer0_init>
+	GPIO._DDRD_.port = 0xFF;
+ 184:	8f ef       	ldi	r24, 0xFF	; 255
+ 186:	8a b9       	out	0x0a, r24	; 10
+	direction = 1;
+ 188:	81 e0       	ldi	r24, 0x01	; 1
+ 18a:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <direction>
+	milisaniye = 0;
+ 18e:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <milisaniye+0x1>
+ 192:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <milisaniye>
+	led_no = 0;
+ 196:	10 92 07 01 	sts	0x0107, r1	; 0x800107 <led_no+0x1>
+ 19a:	10 92 06 01 	sts	0x0106, r1	; 0x800106 <led_no>
+	ziplama_sayisi = 0;
+ 19e:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+	dusus = 160;
+ 1a2:	80 ea       	ldi	r24, 0xA0	; 160
+ 1a4:	90 e0       	ldi	r25, 0x00	; 0
+ 1a6:	90 93 05 01 	sts	0x0105, r25	; 0x800105 <dusus+0x1>
+ 1aa:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <dusus>
+ 1ae:	ff cf       	rjmp	.-2      	; 0x1ae <main+0x2e>
+
+000001b0 <_exit>:
+ 1b0:	f8 94       	cli
+
+000001b2 <__stop_program>:
+ 1b2:	ff cf       	rjmp	.-2      	; 0x1b2 <__stop_program>
